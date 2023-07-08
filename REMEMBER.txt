@@ -1,0 +1,20 @@
+selection + bubble + insertion + merge + quick + count + dnf + wave sort
+kadanes algo
+circular implementation of kadanes algo
+pair sum problem
+matrix search (optimized)
+dp 2d array
+string.cpp
+bit-manipulation
+tower-of-hanoi
+recursion
+vectors and pairs
+oops
+linked list
+doubly linked list
+stack (post pre in)
+queues (deque)
+binary tree (must needed)
+binary search tree
+
+https://codeforces.com/blog/entry/47764

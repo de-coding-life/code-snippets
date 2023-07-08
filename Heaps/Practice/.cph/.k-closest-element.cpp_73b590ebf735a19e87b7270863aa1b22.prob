@@ -1,0 +1,1 @@
+{"name":"Local: k-closest-element","url":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Heaps\\Practice\\k-closest-element.cpp","tests":[{"id":1664962046072,"input":"5 50 5\n100 80 10 5 70","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Heaps\\Practice\\k-closest-element.cpp","group":"local","local":true}

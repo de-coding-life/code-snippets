@@ -1,0 +1,1 @@
+{"name":"Local: bfs_disconnected","url":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Graphs (GFG)\\bfs_disconnected.cpp","tests":[{"id":1671261447311,"input":"7 7\n0 1\n1 3\n2 3\n0 2\n4 5\n5 6\n6 4","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Graphs (GFG)\\bfs_disconnected.cpp","group":"local","local":true}

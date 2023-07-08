@@ -1,0 +1,1 @@
+{"name":"Local: size-k-divisible-by-3","url":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Sliding Window\\size-k-divisible-by-3.cpp","tests":[{"id":1664689006668,"input":"1\n6 5\n8 23 45 12 56 4","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Sliding Window\\size-k-divisible-by-3.cpp","group":"local","local":true}

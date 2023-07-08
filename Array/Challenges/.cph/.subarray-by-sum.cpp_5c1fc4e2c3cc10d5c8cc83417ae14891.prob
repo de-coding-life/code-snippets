@@ -1,0 +1,1 @@
+{"name":"Local: subarray-by-sum","url":"c:\\Users\\yashv\\Desktop\\YASH\\cpp\\Array\\Challenges\\subarray-by-sum.cpp","tests":[{"id":1636270832343,"input":"10 5 1 2 3 4 5","output":"1 2\n4 4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\yashv\\Desktop\\YASH\\cpp\\Array\\Challenges\\subarray-by-sum.cpp","group":"local","local":true}

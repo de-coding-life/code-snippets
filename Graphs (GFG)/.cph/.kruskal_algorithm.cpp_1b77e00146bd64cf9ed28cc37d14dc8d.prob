@@ -1,0 +1,1 @@
+{"name":"Local: kruskal_algorithm","url":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Graphs (GFG)\\kruskal_algorithm.cpp","tests":[{"id":1672047887595,"input":"4 5\n0 1 1\n1 2 2\n2 3 5\n1 3 3\n0 3 4","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Graphs (GFG)\\kruskal_algorithm.cpp","group":"local","local":true}

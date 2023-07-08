@@ -1,0 +1,1 @@
+{"name":"Local: dfs_disconnected","url":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Graphs (GFG)\\dfs_disconnected.cpp","tests":[{"id":1671268280106,"input":"5 4\n1 4\n0 1\n2 3\n4 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Graphs (GFG)\\dfs_disconnected.cpp","group":"local","local":true}

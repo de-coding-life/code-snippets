@@ -1,0 +1,1 @@
+{"name":"Local: subset-sum-problem","url":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Dynamic Programming\\subset-sum-problem.cpp","tests":[{"id":1666692320827,"input":"7 5\n5 2 2 3 5 5 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Dynamic Programming\\subset-sum-problem.cpp","group":"local","local":true}

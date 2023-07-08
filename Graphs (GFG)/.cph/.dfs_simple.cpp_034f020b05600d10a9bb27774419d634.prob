@@ -1,0 +1,1 @@
+{"name":"Local: dfs_simple","url":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Graphs (GFG)\\dfs_simple.cpp","tests":[{"id":1671265872366,"input":"6 6\n1 0\n0 2\n2 3\n1 4\n4 5\n1 3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\Graphs (GFG)\\dfs_simple.cpp","group":"local","local":true}

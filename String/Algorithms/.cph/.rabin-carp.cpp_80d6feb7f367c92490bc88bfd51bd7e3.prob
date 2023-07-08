@@ -1,0 +1,1 @@
+{"name":"Local: rabin-carp","url":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\String\\Algorithms\\rabin-carp.cpp","tests":[{"id":1674537503575,"input":"aaaaaaaaaaaaaaa\naa\n10","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\imdec\\Desktop\\YASH\\cpp\\String\\Algorithms\\rabin-carp.cpp","group":"local","local":true}
