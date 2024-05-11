@@ -8,7 +8,7 @@ using namespace std;
 // Policy Based Data Structure
 // Note:Upper Bound would work as lower bound and vice versa
 //  Find won't work in less_equal, so use find_by_order(order_of_key(a[i]))
-//  OR store pairs in less
+//  To check existence use lower_bound
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
 template <class T>
@@ -16,6 +16,8 @@ using pbds = tree<T, null_type, less_equal<T>, rb_tree_tag,
                   tree_order_statistics_node_update>;
 #define ld long double
 #define md 1000000007
+const int dx[16] = {1, 0, 0, -1, 1, 1, -1, -1, 2, 2, 1, 1, -1, -1, -2, -2};
+const int dy[16] = {0, -1, 1, 0, -1, 1, -1, 1, -1, 1, -2, 2, -2, 2, -1, 1};
 #define vll vector<ll>
 #define v2(dt, name, n, m, ini) vector<vector<dt>> name(n, vector<dt>(m, ini))
 #define pll pair<ll, ll>
@@ -28,83 +30,70 @@ using pbds = tree<T, null_type, less_equal<T>, rb_tree_tag,
 #define forir(i, xx, yy) for (int i = xx; i >= yy; i--)
 #define forlr(i, xx, yy) for (ll j = xx; j >= yy; j--)
 #define all(i) i.begin(), i.end()
-#define iter(zz) for (auto it = zz.begin(); it != zz.end(); it++)
-vector<ll> preprocessing(int mxn)
+#define yn(i)          \
+   if (i)              \
+      cout << "YES\n"; \
+   else                \
+      cout << "NO\n";
+#define debug(i) cout << #i << " = " << i << endl
+vector<vll> rotc(vector<vll> &a) // Clockwise
 {
-   vector<ll> pre(mxn + 1);
-   for (int i = 0; i <= mxn; i++)
+   ll n = a.size();
+   ll m = a[0].size();
+   vector<vll> x(m, vll(n, 0));
+   for (int i = 0; i < n; i++)
    {
-      pre[i] = i;
-   }
-   for (int i = 2; i <= mxn; i++)
-   {
-      for (int j = i; j <= mxn; j += i)
+      for (int j = 0; j < m; j++)
       {
-         if (pre[j] > i)
-            pre[j] = i;
+         x[j][n - 1 - i] = a[i][j];
       }
    }
-   return pre;
+   return x;
 }
-ll gcd(ll aa, ll bb)
+vector<vll> rota(vector<vll> &a) // Anti - Clockwise
 {
-   return (bb == 0) ? aa : gcd(bb, aa % bb);
+   ll n = a.size();
+   ll m = a[0].size();
+   vector<vll> x(m, vll(n, 0));
+   for (int i = 0; i < n; i++)
+   {
+      for (int j = 0; j < m; j++)
+      {
+         x[m - 1 - j][i] = a[i][j];
+      }
+   }
+   return x;
 }
+
 int main()
 {
+   ios_base::sync_with_stdio(false);
+   cin.tie(0);
    int t = 1;
    cin >> t;
-   vll isprime = preprocessing(1000001);
    for (int ii = 1; ii <= t; ii++)
    {
-      int n;
-      cin >> n;
-      vll a(n);
+      ll n, m;
+      cin >> n >> m;
+      vector<vll> a(n, vll(m));
       fori(i, 0, n)
       {
-         cin >> a[i];
-      }
-      ll pgcd[n], sgcd[n];
-      pgcd[0] = a[0];
-      sgcd[n - 1] = a[n - 1];
-      for (int i = 0; i < n; i++)
-      {
-         pgcd[i] = gcd(pgcd[i - 1], a[i]);
-      }
-      for (int i = n - 2; i >= 0; i--)
-      {
-         sgcd[i] = gcd(sgcd[i + 1], a[i]);
-      }
-      vll poss;
-      for (int i = 0; i < n; i++)
-      {
-         if (i == 0)
+         fori(j, 0, m)
          {
-            poss.pb(sgcd[i + 1]);
-         }
-         else if (i == n - 1)
-         {
-            poss.pb(pgcd[i - 1]);
-         }
-         else
-         {
-            poss.pb(gcd(sgcd[i + 1], pgcd[i - 1]));
+            cin >>
+                a[i][j];
          }
       }
-      ll ans = 0;
-      for (int i = 0; i < n; i++)
+      a = rota(a);
+      swap(n, m);
+      fori(i, 0, n)
       {
-         cout << poss[i];
-         if ((poss[i] == 1) or (isprime[poss[i]] == poss[i]))
+         fori(j, 0, m)
          {
-            ans = 1;
-            break;
+            cout << a[i][j] << " ";
          }
+         cout << endl;
       }
-      if (ans == 0)
-         cout << "BOB\n";
-      else
-         cout << "DRAW\n";
    }
    return 0;
 }

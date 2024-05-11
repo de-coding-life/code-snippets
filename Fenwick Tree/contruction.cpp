@@ -32,30 +32,27 @@ class fenwick
 {
 public:
     int n;
-    vector<int> v;
-    vector<int> a;
-    fenwick(vector<int> in)
+    vll a;
+    vll v;
+    fenwick(vll in)
     {
         n = in.size();
-        for (int i = 0; i < n; i++)
-        {
-            a.push_back(0);
-            v.push_back(0);
-        }
-        a.push_back(0);
+        a.resize(n + 1);
+        fill(a.begin(), a.end(), 0);
+        v = a;
         for (int i = 0; i < n; i++)
         {
             update(i, in[i]);
         }
     }
-    void update(int i, int x)
+    void update(int i, ll x)
     {
         int ind = i;
         i++;
         while (i <= n)
         {
-            a[i] = a[i] + x - v[ind];
-            i = i + (i & (-1 * i));
+            a[i] = a[i] + (x - v[ind]);
+            i += i & -i;
         }
         v[ind] = x;
     }
@@ -63,10 +60,10 @@ public:
     {
         ll ans = 0;
         i++;
-        while (i > 0)
+        while (i >= 1)
         {
             ans += a[i];
-            i = i - (i & (-1 * i));
+            i -= i & -i;
         }
         return ans;
     }

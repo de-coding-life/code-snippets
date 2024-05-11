@@ -23,35 +23,25 @@ using namespace std;
 void dijkstra(vector<vector<pair<int, int>>> &v, int src)
 {
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    int dis[v.size()];
+    vll dis(v.size(), LLONG_MAX);
     for (int i = 1; i < v.size(); i++)
     {
         pq.push(mp(INT_MAX, i));
     }
     pq.push(mp(0, src));
-    bool inmst[v.size()] = {0};
-    for (int i = 0; i < v.size(); i++)
+    dis[src] = 0;
+    while (!pq.empty())
     {
-        int cav = -1;
-        while (!pq.empty())
-        {
-            if (!inmst[pq.top().second])
-            {
-                cav = pq.top().second;
-                dis[cav] = pq.top().first;
-                pq.pop();
-                break;
-            }
-            else
-            {
-                pq.pop();
-            }
-        }
-        inmst[cav] = 1;
+        ll cav = pq.top().second;
+        ll cd = pq.top().first;
+        pq.pop();
         for (int j = 0; j < v[cav].size(); j++)
         {
-            if (!inmst[v[cav][j].first])
-                pq.push(mp(v[cav][j].second + dis[cav], v[cav][j].first));
+            if (v[cav][j].second + cd < dis[v[cav][j].first])
+            {
+                pq.push(mp(v[cav][j].second + cd, v[cav][j].first));
+                dis[v[cav][j].first] = v[cav][j].second + cd;
+            }
         }
     }
     for (int i = 0; i < v.size(); i++)
@@ -71,6 +61,6 @@ int main()
         v[t1].pb(mp(t2, ww));
         v[t2].pb(mp(t1, ww));
     }
-    dijkstra(v, 5);
+    dijkstra(v, 0);
     return 0;
 }

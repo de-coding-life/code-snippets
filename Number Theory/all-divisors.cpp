@@ -29,84 +29,54 @@ using pbds = tree<T, null_type, less_equal<T>, rb_tree_tag,
 #define forlr(i, xx, yy) for (ll j = xx; j >= yy; j--)
 #define all(i) i.begin(), i.end()
 #define iter(zz) for (auto it = zz.begin(); it != zz.end(); it++)
-vector<ll> preprocessing(int mxn)
+vll div(ll n)
 {
-   vector<ll> pre(mxn + 1);
-   for (int i = 0; i <= mxn; i++)
-   {
-      pre[i] = i;
-   }
-   for (int i = 2; i <= mxn; i++)
-   {
-      for (int j = i; j <= mxn; j += i)
-      {
-         if (pre[j] > i)
-            pre[j] = i;
-      }
-   }
-   return pre;
+    if (n == 0)
+        return {0};
+    vll ans;
+    for (int i = 1; i * i <= n; i++)
+    {
+        if (n % i == 0)
+        {
+            ans.pb(i);
+            if ((n / i) != i)
+                ans.pb(n / i);
+        }
+    }
+    return ans;
 }
-ll gcd(ll aa, ll bb)
+vector<vll> div1ton(ll n)
 {
-   return (bb == 0) ? aa : gcd(bb, aa % bb);
+    vector<vll> v(n + 1);
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = i; j <= n; j += i)
+        {
+            v[j].pb(i);
+        }
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        reverse(all(v[i]));
+    }
+    return v;
 }
 int main()
 {
-   int t = 1;
-   cin >> t;
-   vll isprime = preprocessing(1000001);
-   for (int ii = 1; ii <= t; ii++)
-   {
-      int n;
-      cin >> n;
-      vll a(n);
-      fori(i, 0, n)
-      {
-         cin >> a[i];
-      }
-      ll pgcd[n], sgcd[n];
-      pgcd[0] = a[0];
-      sgcd[n - 1] = a[n - 1];
-      for (int i = 0; i < n; i++)
-      {
-         pgcd[i] = gcd(pgcd[i - 1], a[i]);
-      }
-      for (int i = n - 2; i >= 0; i--)
-      {
-         sgcd[i] = gcd(sgcd[i + 1], a[i]);
-      }
-      vll poss;
-      for (int i = 0; i < n; i++)
-      {
-         if (i == 0)
-         {
-            poss.pb(sgcd[i + 1]);
-         }
-         else if (i == n - 1)
-         {
-            poss.pb(pgcd[i - 1]);
-         }
-         else
-         {
-            poss.pb(gcd(sgcd[i + 1], pgcd[i - 1]));
-         }
-      }
-      ll ans = 0;
-      for (int i = 0; i < n; i++)
-      {
-         cout << poss[i];
-         if ((poss[i] == 1) or (isprime[poss[i]] == poss[i]))
-         {
-            ans = 1;
-            break;
-         }
-      }
-      if (ans == 0)
-         cout << "BOB\n";
-      else
-         cout << "DRAW\n";
-   }
-   return 0;
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    int t = 1;
+    cin >> t;
+    for (int ii = 1; ii <= t; ii++)
+    {
+        int n;
+        cin >> n;
+        vll a = div(n);
+        for (int i = 0; i < a.size(); i++)
+            cout << a[i] << " ";
+        cout << endl;
+    }
+    return 0;
 }
 /*
 || ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम् उर्वारुकमिव बन्धनान्मृ त्योर्मुक्षीय मामृतात् ||

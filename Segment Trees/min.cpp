@@ -32,61 +32,51 @@ class seg_tree
 public:
     int n;
     vector<ll> tr;
-    seg_tree(int n, vector<ll> v)
+    seg_tree(vector<ll> v)
     {
-        for (int i = 0; i < 4 * n; i++)
-        {
-            tr.push_back(-1);
-        }
-        this->n = n;
-        init(0, n - 1, 0, v);
+        n = v.size();
+        tr.resize(4 * n);
+        fill(tr.begin(), tr.end(), LLONG_MAX);
+        for (int i = 0; i < n; i++)
+            update(i, v[i]);
     }
-    ll init(int s, int e, int ci, vector<ll> &v)
-    {
-        if (s == e)
-        {
-            tr[ci] = v[s];
-            return tr[ci];
-        }
-        int mid = (s + e) / 2;
-        tr[ci] = init(s, mid, (2 * ci) + 1, v) + init(mid + 1, e, (2 * ci) + 2, v);
-        return tr[ci];
-    }
-    ll getsum(int qs, int qe, int s = 0, int e = -1, int ci = 0)
+    ll getmin(int qs, int qe, int s = 0, int e = -1, int ci = 0)
     {
         if (e == -1)
             e = n - 1;
+
         if (qs > e or qe < s)
-            return 0;
+            return LLONG_MAX;
         else if (qs <= s and e <= qe)
             return tr[ci];
+
         int mid = (s + e) / 2;
-        return getsum(qs, qe, s, mid, 2 * ci + 1) + getsum(qs, qe, mid + 1, e, 2 * ci + 2);
+        return min(getmin(qs, qe, s, mid, 2 * ci + 1), getmin(qs, qe, mid + 1, e, 2 * ci + 2));
     }
     ll update(int ind, ll dat, int s = 0, int e = -1, int ci = 0)
     {
         if (e == -1)
             e = n - 1;
-        if (s == e)
+
+        if (s > ind or e < ind)
+            return tr[ci];
+        else if (s == e)
         {
             tr[ci] = dat;
             return dat;
         }
+
         int mid = (s + e) / 2;
-        if (ind <= mid)
-            tr[ci] = tr[ci] - tr[2 * ci + 1] + update(ind, dat, s, mid, 2 * ci + 1);
-        else
-            tr[ci] = tr[ci] - tr[2 * ci + 2] + update(ind, dat, mid + 1, e, 2 * ci + 2);
-        return tr[ci];
+        return tr[ci] = min(update(ind, dat, s, mid, 2 * ci + 1), update(ind, dat, mid + 1, e, 2 * ci + 2));
     }
 };
 int main()
 {
-    seg_tree sg(5, {1, 2, 3, 4, 5});
-    cout << sg.getsum(2, 3) << endl;
+    seg_tree sg({1, 2, 3, 4, 5});
+    cout << sg.getmin(2, 4) << endl;
     sg.update(0, 100);
-    cout << sg.getsum(0, 1) << endl;
+    cout << sg.getmin(0, 1) << endl;
     sg.update(2, 100);
-    cout << sg.getsum(2, 3) << endl;
+    cout << sg.getmin(1, 3) << endl;
     return 0;
 }

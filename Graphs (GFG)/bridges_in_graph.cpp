@@ -1,3 +1,4 @@
+// https://cp-algorithms.com/graph/bridge-searching.html
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long int
@@ -20,45 +21,48 @@ using namespace std;
 #define forjr(xx, yy) for (ll j = xx; j >= yy; j--)
 #define forkr(xx, yy) for (ll k = xx; k >= yy; k--)
 #define iter(zz) for (auto it = zz.begin(); it != zz.end(); it++)
-void dfs(vector<vector<int>> &v, int src, bool vis[], int low[], int dis[], int &cntr, int par)
+
+void dfs(vector<vector<int>> &adj, int timer, vector<int> &tin, vector<int> &low, vector<bool> &visited, int v, int p = -1)
 {
-    if (!vis[src])
+    visited[v] = true;
+    tin[v] = low[v] = timer++;
+    for (int to : adj[v])
     {
-        dis[src] = cntr;
-        low[src] = cntr;
-        cntr++;
-        vis[src] = 1;
-        for (int i = 0; i < v[src].size(); i++)
+        if (to == p)
+            continue;
+        if (visited[to])
         {
-            dfs(v, v[src][i], vis, low, dis, cntr, src);
+            low[v] = min(low[v], tin[to]);
         }
-        for (int i = 0; i < v[src].size(); i++)
+        else
         {
-            if (v[src][i] != par)
+            dfs(adj, timer, tin, low, visited, to, v);
+            low[v] = min(low[v], low[to]);
+            if (low[to] > tin[v])
             {
-                low[src] = min(low[src], low[v[src][i]]);
-            }
-        }
-        for (int i = 0; i < v[src].size(); i++)
-        {
-            if (dis[src] < low[v[src][i]])
-            {
-                cout << src << " " << v[src][i] << endl;
+                cout << to << " " << v << endl;
             }
         }
     }
 }
-void dfs_all(vector<vector<int>> &v)
+
+void find_bridges(vector<vector<int>> &v)
 {
-    bool vis[v.size()] = {0};
-    int low[v.size()], disc[v.size()];
-    int cntr = 0;
-    for (int i = 0; i < v.size(); i++)
+    vector<bool> visited;
+    vector<int> tin, low;
+    int timer;
+    int n = v.size();
+    timer = 0;
+    visited.assign(n, false);
+    tin.assign(n, -1);
+    low.assign(n, -1);
+    for (int i = 0; i < n; ++i)
     {
-        if (!vis[i])
-            dfs(v, i, vis, low, disc, cntr, 0);
+        if (!visited[i])
+            dfs(v, timer, tin, low, visited, i);
     }
 }
+
 int main()
 {
     ll n, e;
@@ -71,6 +75,6 @@ int main()
         v[t1].pb(t2);
         v[t2].pb(t1);
     }
-    dfs_all(v);
+    find_bridges(v);
     return 0;
 }

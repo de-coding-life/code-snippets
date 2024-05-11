@@ -54,6 +54,6 @@ ll moddivide(ll a, ll b, ll mdd)
 }
 int main()
 {
-   cout << moddivide(9109, 439, 100) << endl;
+   cout << moddivide(0, 1, md) << endl;
    return 0;
 }
